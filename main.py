@@ -1,20 +1,32 @@
 import openpyxl
 import os
 
+####################LOCAL FUNCTIONS
+from functions import book_exists
+
 ####################TESTS
 #verify if the book exists
-def does_file_exists(file_neme):
-    return os.path.exists(file_neme)
+book_exists.does_file_exists('testes.xlsx')
 
-if does_file_exists('./testes.xlsx'):
-    print('open the book')
-    book = openpyxl.load_workbook('testes.xlsx')
-else:
-    book = openpyxl.Workbook()
-    book.create_sheet('MAIN')
-    page = book['MAIN']
-    page.append(['NOME','SEXO','LINK-GOOGLE','LINK-LATTES','LINK-ARTIGOS','ANO-PUBLICACAO'])
-    book.save('testes.xlsx')
+####################MAIN
+while(True):
+    os.system('clear')
+    #MENU
+    print("""
+    WELLCOME TO THE RESUME+
+    
+        1 - add a resume
+        2 - ...
+        0 - exit
+    """)
 
-name = input('what the name you want to search? ')
+    option=int(input('Enter your choice: '))
 
+    if option == 1:
+        from functions import add_resume #call add resume function ./function/add_resume
+    elif option == 2:
+        print('Handle option \'Option 2\'')
+    elif option == 0: 
+        exit()
+    else:
+        print('Invalid option. Please enter a number between 1 and 4.')
