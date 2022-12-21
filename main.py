@@ -3,6 +3,7 @@ import os
 
 ####################LOCAL FUNCTIONS
 from functions import book_exists
+from functions import add_resume
 
 ####################TESTS
 #verify if the book exists
@@ -23,7 +24,7 @@ while(True):
     option=int(input('Enter your choice: '))
 
     if option == 1:
-        from functions import add_resume #call add resume function ./function/add_resume
+        add_resume.resume() #call add resume function ./function/add_resume
     elif option == 2:
         print('Handle option \'Option 2\'')
     elif option == 0: 

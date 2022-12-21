@@ -13,5 +13,5 @@ else:
     book=openpyxl.Workbook()
     book.create_sheet('MAIN')
     page=book['MAIN']
-    page.append(['NOME','SEXO','LINK-GOOGLE','LINK-LATTES','LINK-ARTIGOS','ANO-PUBLICACAO'])
+    page.append(['NOME','SEXO','LINK-GOOGLE','LINK-LATTES'])
     book.save('testes.xlsx')
