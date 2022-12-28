@@ -24,20 +24,31 @@ def open_resumes(p, name, gender):
     lattes_url=resume_page.url                                          #take the url##
 
     #SEARCH ON LATTES
-    #elderly
-    label_elderly=resume_page.locator('text=elderly')
-    count_elderly=label_elderly.count()
     #unicer
+    label_unicer=resume_page.locator('text=UniSER')
+    count_unicer=label_unicer.count()
     #unb
+    label_unb=resume_page.locator('text=UnB')
+    count_unb=label_unb.count()
     #elder
+    label_elder=resume_page.locator('text=elder')
+    count_elder=label_elder.count()
     #aged
     #envelhecimento
+    label_envelhecimento=resume_page.locator('text=envelhecimento')
+    count_envelhecimento=label_envelhecimento.count()
     #envelhecer
+    label_envelhecer=resume_page.locator('text=envelhecer')
+    count_envelhecer=label_envelhecer.count()
     #aging
+    label_aging=resume_page.locator('text=aging')
+    count_aging=label_aging.count()
 
     ##SAVING##
-    total_of_articles=count_elderly
+    total_of_articles=+count_unicer+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
     os.system('clear')
+
+    print('COUNT', count_envelhecer)
     print('\nthe total of articles are: ', total_of_articles)
     response=input('save LATTES profile? [y/N] ')
     response.lower()
@@ -55,9 +66,18 @@ def open_resumes(p, name, gender):
         user_page.append(['LATTES RESUME'])
 
         #SENDING ARTICLES
-        for i in range(count_elderly):
-            user_page.append([label_elderly.nth(i).text_content()])
-
+        for i in range(count_unicer):
+            user_page.append([label_unicer.nth(i).text_content()])
+        for i in range(count_unb):
+            user_page.append([label_unb.nth(i).text_content()])
+        for i in range(count_elder):
+            user_page.append([label_elder.nth(i).text_content()])  
+        for i in range(count_aging):
+            user_page.append([label_aging.nth(i).text_content()])    
+        for i in range(count_envelhecimento):
+            user_page.append([label_envelhecimento.nth(i).text_content()]) 
+        for i in range(count_envelhecimento):
+            user_page.append([label_envelhecimento.nth(i).text_content()]) 
         #SENDING TO THE MAIN SHEET
         main_page=book['MAIN']
         main_page.append([name, gender,'----',lattes_url])
