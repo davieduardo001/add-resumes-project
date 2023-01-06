@@ -10,17 +10,18 @@ def lattes(p, name):
 
     page.goto("http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar")
 
-    page.locator('xpath=//*[@id="textoBusca"]').fill(name)              #fill the name
+    page.locator('xpath=//*[@id="textoBusca"]').fill(name)              #fill the name#
     page.locator('xpath=//*[@id="buscarDemais"]').click()               #select "more options"
     page.locator('a.button#botaoBuscaFiltros').click()                  #search on lattes
 
     os.system('clear')
-    print('\nwaiting... ')                                               ###############
+    print('\nwaiting... ')                                              ###############
     input('when you find the resume, please press Enter ')              ###############
     with context.expect_page() as resume_page_info:                     #open resume###
         page.locator('xpath=//*[@id="idbtnabrircurriculo"]').click()    ###############
     resume_page = resume_page_info.value                                ###############
     resume_page.wait_for_load_state()                                   ###############
+
     global lattes_url                                                   #set the var###
     lattes_url=resume_page.url                                          #take the url##
 
@@ -79,12 +80,23 @@ def lattes(p, name):
         for i in range(count_envelhecimento):
             user_page.append([label_envelhecimento.nth(i).text_content()]) 
         book.save('planilha.xlsx')
+        browser.close()
     else:
         print('okay... canceling operation')
         quit()
 
 ##############GOOGLE
-#def google(p, name):
+def google(p, name):
+    browser=p.chromium.launch(headless=False)                           #open the browser
+    context=browser.new_context()                                       #create a new context
+
+    page=context.new_page()
+
+    page.goto("https://scholar.google.com.br/citations?hl=pt-BR&view_op=search_authors&mauthors=&btnG=")
+
+    page.locator('xpath=//*[@id="gs_hdr_tsi"]').fill(name)              #fill the name#
+    page.locator('xpath=//*[@id="gs_hdr_tsb"]').click()                 #search########
+
 
 #SEND TO THE MAIN SHEET
 #obs: this functions depends of the URL in the other 2 functions
