@@ -7,7 +7,7 @@ from functions import add_resume
 
 ####################TESTS
 #verify if the book exists
-book_exists.does_file_exists('testes.xlsx')
+book_exists.does_file_exists('planilha.xlsx')
 
 ####################MAIN
 while(True):

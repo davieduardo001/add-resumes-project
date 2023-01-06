@@ -1,8 +1,9 @@
+
 from playwright.sync_api import sync_playwright
 import os
 
 ##############FUNCTIONS
-from functions.src import OpenLattes
+from functions.src import OpenSites
 
 ##############MAIN
 def resume():
@@ -12,4 +13,5 @@ def resume():
         name=input('please write a name to search for: ')
         gender=input('please enter the gender: [M/F] ')
         gender.lower()
-        OpenLattes.open_resumes(p, name, gender)
+        OpenSites.lattes(p, name)
+        OpenSites.send_to_main_sheet(name, gender)
