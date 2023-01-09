@@ -17,7 +17,7 @@ while(True):
     WELLCOME TO THE RESUME+
     
         1 - add a resume
-        2 - ...
+        2 - if you arrady have the URL
         0 - exit
     """)
 
