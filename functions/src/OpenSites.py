@@ -1,6 +1,5 @@
 import openpyxl
 import os
-from playwright.sync_api import expect
 
 ##############LATTES
 def lattes(p, name):
