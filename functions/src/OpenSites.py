@@ -15,49 +15,48 @@ def lattes(p, name):
     page.locator('a.button#botaoBuscaFiltros').click()                  #search on lattes
 
     os.system('clear')
-    print('\nwaiting... ')                                              ###############
-    input('when you find the resume, please press Enter ')              ###############
-    with context.expect_page() as resume_page_info:                     #open resume###
-        page.locator('xpath=//*[@id="idbtnabrircurriculo"]').click()    ###############
-    resume_page = resume_page_info.value                                ###############
-    resume_page.wait_for_load_state()                                   ###############
+    print('\nwaiting... ')                                          
+    response=input('Did you find the resume? [y/N] ')                         
+   
+    if response=='y' or response=='Y':
+        with context.expect_page() as resume_page_info:                     #open resume###
+            page.locator('xpath=//*[@id="idbtnabrircurriculo"]').click()    ###############
+        resume_page = resume_page_info.value                                ###############
+        resume_page.wait_for_load_state()                                   ###############
 
-    global lattes_url                                                   #set the var###
-    lattes_url=resume_page.url                                          #take the url##
-    page.reload()
+        global lattes_url                                                   #set the var###
+        lattes_url=resume_page.url                                          #take the url##
+        page.reload()
 
-    #SEARCH ON LATTES
-    #uniser
-    label_uniser=resume_page.locator('text=UniSER')
-    count_uniser=label_uniser.count()
-    #unb
-    label_unb=resume_page.locator('text=UnB')
-    count_unb=label_unb.count()
-    #elder
-    label_elder=resume_page.locator('text=elder')
-    count_elder=label_elder.count()
-    #envelhecimento
-    label_envelhecimento=resume_page.locator('text=envelhecimento')
-    count_envelhecimento=label_envelhecimento.count()
-    #envelhecer
-    label_envelhecer=resume_page.locator('text=envelhecer')
-    count_envelhecer=label_envelhecer.count()
-    #aging
-    label_aging=resume_page.locator('text=aging')
-    count_aging=label_aging.count()
-    #older
-    label_older=page.locator('text=older')
-    count_older=label_older.count()
+        #SEARCH ON LATTES
+        #uniser
+        label_uniser=resume_page.locator('text=UniSER')
+        count_uniser=label_uniser.count()
+        #unb
+        label_unb=resume_page.locator('text=UnB')
+        count_unb=label_unb.count()
+        #elder
+        label_elder=resume_page.locator('text=elder')
+        count_elder=label_elder.count()
+        #envelhecimento
+        label_envelhecimento=resume_page.locator('text=envelhecimento')
+        count_envelhecimento=label_envelhecimento.count()
+        #envelhecer
+        label_envelhecer=resume_page.locator('text=envelhecer')
+        count_envelhecer=label_envelhecer.count()
+        #aging
+        label_aging=resume_page.locator('text=aging')
+        count_aging=label_aging.count()
+        #older
+        label_older=page.locator('text=older')
+        count_older=label_older.count()
 
-    ##SAVING##
-    total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
-    os.system('clear')
+        ##SAVING##
+        total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
+        os.system('clear')
 
-    print('\nthe total of articles are: ', total_of_articles)
-    response=input('save LATTES profile? [y/N] ')
-    response.lower()
-
-    if  response == 'y':
+        print('\nthe total of articles are: ', total_of_articles)
+        input('saving the LATTES profile, please ENTER')
         #CREATING USER SHEET
         book=openpyxl.load_workbook('planilha.xlsx')
         book.create_sheet(name)
@@ -89,8 +88,12 @@ def lattes(p, name):
         browser.close()
         os.system('clear')
     else:
-        print('okay... canceling operation')
-        quit()
+        print('okay, this person dont have the Lattes resume...')
+        lattes_url='---'
+        browser.close()
+        book=openpyxl.load_workbook('planilha.xlsx')
+        book.create_sheet(name)
+        book.save('planilha.xlsx') 
 
 ##############GOOGLE
 def google(p, name):
@@ -106,46 +109,48 @@ def google(p, name):
 
     os.system('clear')
     print('\nwaiting... ')
-    page.locator('button#gsc_bpf_more').click()
-    input('when you find the resume, MAKE SURE that all articles are showing, then press Enter ')
-    page.reload()
+    response=input('Did you find the resume? [y/N] ')
 
-    #SEARCH ON GOOGLE
-    #uniser
-    label_uniser=page.locator('text=UniSER')
-    count_uniser=label_uniser.count()
-    #unb
-    label_unb=page.locator('text=UnB')
-    count_unb=label_unb.count()
-    #elder
-    label_elder=page.locator('text=elder')
-    count_elder=label_elder.count()
-    #envelhecimento
-    label_envelhecimento=page.locator('text=envelhecimento')
-    count_envelhecimento=label_envelhecimento.count()
-    #envelhecer
-    label_envelhecer=page.locator('text=envelhecer')
-    count_envelhecer=label_envelhecer.count()
-    #aging
-    label_aging=page.locator('text=aging')
-    count_aging=label_aging.count()
-    #older
-    label_older=page.locator('text=older')
-    count_older=label_older.count()
+    if response=='Y' or response=='y':
+        page.locator('button#gsc_bpf_more').click()
+        input('MAKE SURE that all articles are showing. ')
+        page.reload()
 
-    ##SAVING##
-    total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
-    os.system('clear')
+        #SEARCH ON GOOGLE
+        #uniser
+        label_uniser=page.locator('text=UniSER')
+        count_uniser=label_uniser.count()
+        #unb
+        label_unb=page.locator('text=UnB')
+        count_unb=label_unb.count()
+        #elder
+        label_elder=page.locator('text=elder')
+        count_elder=label_elder.count()
+        #envelhecimento
+        label_envelhecimento=page.locator('text=envelhecimento')
+        count_envelhecimento=label_envelhecimento.count()
+        #envelhecer
+        label_envelhecer=page.locator('text=envelhecer')
+        count_envelhecer=label_envelhecer.count()
+        #aging
+        label_aging=page.locator('text=aging')
+        count_aging=label_aging.count()
+        #older
+        label_older=page.locator('text=older')
+        count_older=label_older.count()
 
-    print('\nthe total of articles are: ', total_of_articles)
-    response=input('save GOOGLE profile? [y/N] ')
-    response.lower()
-    page.reload()
+        ##SAVING##
+        total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
+        os.system('clear')
 
-    global google_url
-    google_url=page.url
+        print('\nthe total of articles are: ', total_of_articles)
+        response=input('saving the GOOGLE profile, please press ENTER ')
+        response.lower()
+        page.reload()
 
-    if  response == 'y':
+        global google_url
+        google_url=page.url
+
         #CREATING USER SHEET
         book=openpyxl.load_workbook('planilha.xlsx')
         user_page=book[name]
@@ -171,8 +176,9 @@ def google(p, name):
         book.save('planilha.xlsx')
         browser.close()
     else:
-        print('okay... canceling operation')
-        quit()
+        print('okay, this person dont have the Lattes resume...')
+        google_url='---'
+        browser.close()
 
 #SEND TO THE MAIN SHEET
 #obs: this functions depends of the URL in the other 2 functions
@@ -181,3 +187,9 @@ def send_to_main_sheet(name, gender):
     main_page=book['MAIN']
     main_page.append([name, gender, google_url, lattes_url])
     book.save('planilha.xlsx')
+
+
+
+
+
+

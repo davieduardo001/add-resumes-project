@@ -25,8 +25,6 @@ while(True):
 
     if option == 1:
         add_resume.resume() #call add resume function ./function/add_resume
-    elif option == 2:
-        print('Handle option \'Option 2\'')
     elif option == 0: 
         exit()
     else:
