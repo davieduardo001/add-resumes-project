@@ -318,7 +318,7 @@ def google_with_url(p, name, googleUrl):
         #CREATING USER SHEET
         book=openpyxl.load_workbook('planilha.xlsx')
         user_page=book[name]
-        user_page.append(['####'])
+        user_page.append(['####']) 
         user_page.append(['Google curriculo:'])
         user_page.append(['####'])
 

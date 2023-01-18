@@ -5,7 +5,7 @@ import os
 from functions.src import OpenSites
 
 ##############MAIN
-def resume():
+def resume(): 
     with sync_playwright() as p:
         name=input('\nplease write a name to search for: ')
         gender=input('please enter the gender: [M/F] ')
