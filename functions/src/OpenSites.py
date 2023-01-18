@@ -1,6 +1,7 @@
 import openpyxl
 import os
 
+####WITHOUT-URL-FUNCTIONS####
 ##############LATTES
 def lattes(p, name):
     browser=p.chromium.launch(headless=False)                           #open the browser
@@ -14,7 +15,6 @@ def lattes(p, name):
     page.locator('xpath=//*[@id="buscarDemais"]').click()               #select "more options"
     page.locator('a.button#botaoBuscaFiltros').click()                  #search on lattes
 
-    os.system('clear')
     print('\nwaiting... ')                                          
     response=input('Did you find the resume? [y/N] ')                         
    
@@ -53,7 +53,6 @@ def lattes(p, name):
 
         ##SAVING##
         total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
-        os.system('clear')
 
         print('\nthe total of articles are: ', total_of_articles)
         input('saving the LATTES profile, please ENTER')
@@ -86,7 +85,7 @@ def lattes(p, name):
             user_page.append([label_envelhecer.nth(i).text_content()]) 
         book.save('planilha.xlsx')
         browser.close()
-        os.system('clear')
+
     else:
         print('okay, this person dont have the Lattes resume...')
         lattes_url='---'
@@ -107,7 +106,6 @@ def google(p, name):
     page.locator('xpath=//*[@id="gs_hdr_tsi"]').fill(name)              #fill the name#
     page.locator('xpath=//*[@id="gs_hdr_tsb"]').click()                 #search########
 
-    os.system('clear')
     print('\nwaiting... ')
     response=input('Did you find the resume? [y/N] ')
 
@@ -141,7 +139,6 @@ def google(p, name):
 
         ##SAVING##
         total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
-        os.system('clear')
 
         print('\nthe total of articles are: ', total_of_articles)
         response=input('saving the GOOGLE profile, please press ENTER ')
@@ -176,7 +173,7 @@ def google(p, name):
         book.save('planilha.xlsx')
         browser.close()
     else:
-        print('okay, this person dont have the Lattes resume...')
+        print('okay, this person dont have the GOOGLE resume...')
         google_url='---'
         browser.close()
 
@@ -188,8 +185,160 @@ def send_to_main_sheet(name, gender):
     main_page.append([name, gender, google_url, lattes_url])
     book.save('planilha.xlsx')
 
+####WITH-URL-FUNCTIONS####
+def lattes_with_url(p, name, lattesUrl):                        
 
+    if lattesUrl!='':
+        browser=p.chromium.launch(headless=False)                           #open the browser
+        context=browser.new_context()                                       #create a new context
 
+        page=context.new_page()
 
+        page.goto(lattesUrl) 
+        print('\nwaiting... ')                                          
+        response=input('when you finished the captcha return and press ENTER ')
 
+        global lattes_url                                                   #set the var###
+        lattes_url=page.url                                          #take the url##
 
+        #SEARCH ON LATTES
+        #uniser
+        label_uniser=page.locator('text=UniSER')
+        count_uniser=label_uniser.count()
+        #unb
+        label_unb=page.locator('text=UnB')
+        count_unb=label_unb.count()
+        #elder
+        label_elder=page.locator('text=elder')
+        count_elder=label_elder.count()
+        #envelhecimento
+        label_envelhecimento=page.locator('text=envelhecimento')
+        count_envelhecimento=label_envelhecimento.count()
+        #envelhecer
+        label_envelhecer=page.locator('text=envelhecer')
+        count_envelhecer=label_envelhecer.count()
+        #aging
+        label_aging=page.locator('text=aging')
+        count_aging=label_aging.count()
+        #older
+        label_older=page.locator('text=older')
+        count_older=label_older.count()
+
+        ##SAVING##
+        total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
+
+        print('\nthe total of articles are: ', total_of_articles)
+        input('saving the LATTES profile, please ENTER')
+        #CREATING USER SHEET
+        book=openpyxl.load_workbook('planilha.xlsx')
+        book.create_sheet(name)
+        book.save('planilha.xlsx')
+        user_page=book[name]
+        user_page.append([name])
+        user_page.append(['####'])
+        user_page.append(['Resumo:'])
+        user_page.append([page.locator('xpath=/html/body/div[1]/div[3]/div/div/div/div[2]/p').text_content()])
+        user_page.append(['####'])
+        user_page.append(['Lattes curriculo: '])
+
+        #SENDING ARTICLES
+        for i in range(count_uniser):                                   #uniser
+            user_page.append([label_uniser.nth(i).text_content()])
+        for i in range(count_unb):                                      #unb
+            user_page.append([label_unb.nth(i).text_content()])
+        for i in range(count_elder):                                    #elder
+            user_page.append([label_elder.nth(i).text_content()])  
+        for i in range(count_aging):                                    #aging
+            user_page.append([label_aging.nth(i).text_content()])    
+        for i in range(count_envelhecimento):                           #envelhecimento
+            user_page.append([label_envelhecimento.nth(i).text_content()])
+        for i in range(count_older):                                    #older
+            user_page.append([label_older.nth(i).text_content()])
+        for i in range(count_envelhecer):                               #envelhecer            
+            user_page.append([label_envelhecer.nth(i).text_content()]) 
+        book.save('planilha.xlsx')
+        browser.close()
+    else:
+        print('\nokay, this person dont have the Lattes resume...')
+        lattes_url='---'
+        book=openpyxl.load_workbook('planilha.xlsx')
+        book.create_sheet(name)
+        book.save('planilha.xlsx') 
+
+def google_with_url(p, name, googleUrl):
+
+    if googleUrl!='':
+        browser=p.chromium.launch(headless=False)                           #open the browser
+        context=browser.new_context()                                       #create a new context
+
+        page=context.new_page()
+
+        page.goto(googleUrl)
+
+        print('\nLoading GOOGLE resume...')
+
+        page.locator('button#gsc_bpf_more').click()
+        input('MAKE SURE that all articles are showing. ')
+        page.reload()
+
+        #SEARCH ON GOOGLE
+        #uniser
+        label_uniser=page.locator('text=UniSER')
+        count_uniser=label_uniser.count()
+        #unb
+        label_unb=page.locator('text=UnB')
+        count_unb=label_unb.count()
+        #elder
+        label_elder=page.locator('text=elder')
+        count_elder=label_elder.count()
+        #envelhecimento
+        label_envelhecimento=page.locator('text=envelhecimento')
+        count_envelhecimento=label_envelhecimento.count()
+        #envelhecer
+        label_envelhecer=page.locator('text=envelhecer')
+        count_envelhecer=label_envelhecer.count()
+        #aging
+        label_aging=page.locator('text=aging')
+        count_aging=label_aging.count()
+        #older
+        label_older=page.locator('text=older')
+        count_older=label_older.count()
+
+        ##SAVING##
+        total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
+
+        print('\nthe total of articles are: ', total_of_articles)
+        response=input('saving the GOOGLE profile, please press ENTER ')
+        response.lower()
+        page.reload()
+
+        global google_url
+        google_url=page.url
+
+        #CREATING USER SHEET
+        book=openpyxl.load_workbook('planilha.xlsx')
+        user_page=book[name]
+        user_page.append(['####'])
+        user_page.append(['Google curriculo:'])
+        user_page.append(['####'])
+
+        #SENDING ARTICLES
+        for i in range(count_uniser):                                   #uniser
+            user_page.append([label_uniser.nth(i).text_content()])
+        for i in range(count_unb):                                      #unb
+            user_page.append([label_unb.nth(i).text_content()])
+        for i in range(count_elder):                                    #elder
+            user_page.append([label_elder.nth(i).text_content()])  
+        for i in range(count_aging):                                    #aging
+            user_page.append([label_aging.nth(i).text_content()])    
+        for i in range(count_envelhecimento):                           #envelhecimento
+            user_page.append([label_envelhecimento.nth(i).text_content()])
+        for i in range(count_older):                                    #older
+            user_page.append([label_older.nth(i).text_content()])
+        for i in range(count_envelhecer):                               #envelhecer            
+            user_page.append([label_envelhecer.nth(i).text_content()]) 
+        book.save('planilha.xlsx')
+        browser.close()
+    else:
+        print('\nokay, this person dont have the GOOGLE resume...')
+        google_url='---'

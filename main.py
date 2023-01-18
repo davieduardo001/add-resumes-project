@@ -11,9 +11,9 @@ book_exists.does_file_exists('planilha.xlsx')
 
 ####################MAIN
 while(True):
-    os.system('clear')
     #MENU
     print("""
+    
     WELLCOME TO THE RESUME+
     
         1 - add a resume
@@ -25,6 +25,8 @@ while(True):
 
     if option == 1:
         add_resume.resume() #call add resume function ./function/add_resume
+    elif option == 2:
+        add_resume.resume_with_url() 
     elif option == 0: 
         exit()
     else:
