@@ -15,3 +15,4 @@ else:
     page=book['MAIN']
     page.append(['NOME','SEXO','LINK-GOOGLE','LINK-LATTES'])
     book.save('planilha.xlsx')
+    os.system('cls')

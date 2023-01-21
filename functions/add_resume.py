@@ -27,3 +27,4 @@ def resume_with_url():
         OpenSites.lattes_with_url(p, name, lattesUrl)
         OpenSites.google_with_url(p, name, googleUrl)
         OpenSites.send_to_main_sheet(name, gender)
+        os.system('cls')

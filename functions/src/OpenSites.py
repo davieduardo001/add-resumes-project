@@ -55,7 +55,7 @@ def lattes(p, name):
         total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
 
         print('\nthe total of articles are: ', total_of_articles)
-        input('saving the LATTES profile, please ENTER')
+        input('saving the LATTES profile, please ENTER ')
         #CREATING USER SHEET
         book=openpyxl.load_workbook('planilha.xlsx')
         book.create_sheet(name)
@@ -96,6 +96,7 @@ def lattes(p, name):
 
 ##############GOOGLE
 def google(p, name):
+    print('\nLoading GOOGLE resume...')
     browser=p.chromium.launch(headless=False)                           #open the browser
     context=browser.new_context()                                       #create a new context
 
@@ -228,7 +229,7 @@ def lattes_with_url(p, name, lattesUrl):
         total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
 
         print('\nthe total of articles are: ', total_of_articles)
-        input('saving the LATTES profile, please ENTER')
+        input('saving the LATTES profile, please ENTER ')
         #CREATING USER SHEET
         book=openpyxl.load_workbook('planilha.xlsx')
         book.create_sheet(name)
