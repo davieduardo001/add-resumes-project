@@ -2,22 +2,8 @@
 
 ->Then, how to install it? 
 *first, u' need to install the python and pip;
-*second, u' need to install the libs;
-
--> when u' install python, run (to install the libs):
-pip install playwright
-pip install openpyxl
-python -m playwright install
+*second, u' need to install the libs (IN WINDOWS U' CAN USE THE "instalador" FOR THIS;
 
 -> here are the videos explaining HOW TO USE AND INSTALL the software:
-ps: in the descriptions of the videos have the timers
-ps2: READ THE DESCRIPTION AND SEE THE "obeservacao" part!
 (for WINDOWS) https://www.youtube.com/watch?v=KeuKwBxKTc8
 (for LINUX) https://www.youtube.com/watch?v=Zy0snqVouAo
-
-OBS:
-*if u' want to use a "planilha compartilhada", make shure to just have one sheet on the project folder,
-and be sure that it have the name "planilha";
-*in the folder of the project is possible to have just 1 sheet;
-*Be aware of not including the same people on the sheet!
-*all this informations are on the videos, so watch, pls...
