@@ -4,7 +4,7 @@
 *first, u' need to install the python and pip;
 *second, u' need to install the libs;
 
--> when u' install python, run:
+-> when u' install python, run (to install the libs):
 pip install playwright
 pip install openpyxl
 python -m playwright install
