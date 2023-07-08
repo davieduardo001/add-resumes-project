@@ -50,9 +50,18 @@ def lattes(p, name):
         #older
         label_older=page.locator('text=older')
         count_older=label_older.count()
+        #senescence
+        label_senescence=page.locator('text=senescence')
+        count_senescence=label_senescence.count()
+        #senescência
+        label_senescencia=page.locator('text=senescência')
+        count_senescencia=label_senescencia.count()
+        #seniors
+        label_seniors=page.locator('text=seniors')
+        count_seniors=label_seniors.count()
 
         ##SAVING##
-        total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
+        total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer+count_senescence+count_senescencia+count_seniors+count_older
 
         print('\nthe total of articles are: ', total_of_articles)
         input('saving the LATTES profile, please ENTER ')
@@ -82,7 +91,13 @@ def lattes(p, name):
         for i in range(count_older):                                    #older
             user_page.append([label_older.nth(i).text_content()])
         for i in range(count_envelhecer):                               #envelhecer            
-            user_page.append([label_envelhecer.nth(i).text_content()]) 
+            user_page.append([label_envelhecer.nth(i).text_content()])
+        for i in range(count_seniors):                                   #seniors            
+            user_page.append([label_seniors.nth(i).text_content()]) 
+        for i in range(count_senescencia):                              #senescência            
+            user_page.append([label_senescencia.nth(i).text_content()])
+        for i in range(count_senescence):                               #senescence            
+            user_page.append([label_senescence.nth(i).text_content()]) 
         book.save('planilha.xlsx')
         browser.close()
 
@@ -137,9 +152,18 @@ def google(p, name):
         #older
         label_older=page.locator('text=older')
         count_older=label_older.count()
+        #senescence
+        label_senescence=page.locator('text=senescence')
+        count_senescence=label_senescence.count()
+        #senescência
+        label_senescencia=page.locator('text=senescência')
+        count_senescencia=label_senescencia.count()
+        #seniors
+        label_seniors=page.locator('text=seniors')
+        count_seniors=label_seniors.count()
 
         ##SAVING##
-        total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
+        total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer+count_senescence+count_senescencia+count_seniors+count_older
 
         print('\nthe total of articles are: ', total_of_articles)
         response=input('saving the GOOGLE profile, please press ENTER ')
@@ -170,7 +194,13 @@ def google(p, name):
         for i in range(count_older):                                    #older
             user_page.append([label_older.nth(i).text_content()])
         for i in range(count_envelhecer):                               #envelhecer            
-            user_page.append([label_envelhecer.nth(i).text_content()]) 
+            user_page.append([label_envelhecer.nth(i).text_content()])
+        for i in range(count_seniors):                                   #seniors            
+            user_page.append([label_seniors.nth(i).text_content()]) 
+        for i in range(count_senescencia):                              #senescência            
+            user_page.append([label_senescencia.nth(i).text_content()])
+        for i in range(count_senescence):                               #senescence            
+            user_page.append([label_senescence.nth(i).text_content()]) 
         book.save('planilha.xlsx')
         browser.close()
     else:
@@ -204,29 +234,38 @@ def lattes_with_url(p, name, lattesUrl):
 
         #SEARCH ON LATTES
         #uniser
-        label_uniser=page.locator('text=UniSER')
+        label_uniser=resume_page.locator('text=UniSER')
         count_uniser=label_uniser.count()
         #unb
-        label_unb=page.locator('text=UnB')
+        label_unb=resume_page.locator('text=UnB')
         count_unb=label_unb.count()
         #elder
-        label_elder=page.locator('text=elder')
+        label_elder=resume_page.locator('text=elder')
         count_elder=label_elder.count()
         #envelhecimento
-        label_envelhecimento=page.locator('text=envelhecimento')
+        label_envelhecimento=resume_page.locator('text=envelhecimento')
         count_envelhecimento=label_envelhecimento.count()
         #envelhecer
-        label_envelhecer=page.locator('text=envelhecer')
+        label_envelhecer=resume_page.locator('text=envelhecer')
         count_envelhecer=label_envelhecer.count()
         #aging
-        label_aging=page.locator('text=aging')
+        label_aging=resume_page.locator('text=aging')
         count_aging=label_aging.count()
         #older
         label_older=page.locator('text=older')
         count_older=label_older.count()
+        #senescence
+        label_senescence=page.locator('text=senescence')
+        count_senescence=label_senescence.count()
+        #senescência
+        label_senescencia=page.locator('text=senescência')
+        count_senescencia=label_senescencia.count()
+        #seniors
+        label_seniors=page.locator('text=seniors')
+        count_seniors=label_seniors.count()
 
         ##SAVING##
-        total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
+        total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer+count_senescence+count_senescencia+count_seniors+count_older
 
         print('\nthe total of articles are: ', total_of_articles)
         input('saving the LATTES profile, please ENTER ')
@@ -256,7 +295,13 @@ def lattes_with_url(p, name, lattesUrl):
         for i in range(count_older):                                    #older
             user_page.append([label_older.nth(i).text_content()])
         for i in range(count_envelhecer):                               #envelhecer            
-            user_page.append([label_envelhecer.nth(i).text_content()]) 
+            user_page.append([label_envelhecer.nth(i).text_content()])
+        for i in range(count_seniors):                                   #seniors            
+            user_page.append([label_seniors.nth(i).text_content()]) 
+        for i in range(count_senescencia):                              #senescência            
+            user_page.append([label_senescencia.nth(i).text_content()])
+        for i in range(count_senescence):                               #senescence            
+            user_page.append([label_senescence.nth(i).text_content()]) 
         book.save('planilha.xlsx')
         browser.close()
     else:
@@ -304,9 +349,18 @@ def google_with_url(p, name, googleUrl):
         #older
         label_older=page.locator('text=older')
         count_older=label_older.count()
+        #senescence
+        label_senescence=page.locator('text=senescence')
+        count_senescence=label_senescence.count()
+        #senescência
+        label_senescencia=page.locator('text=senescência')
+        count_senescencia=label_senescencia.count()
+        #seniors
+        label_seniors=page.locator('text=seniors')
+        count_seniors=label_seniors.count()
 
         ##SAVING##
-        total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer
+        total_of_articles=count_uniser+count_unb+count_elder+count_aging+count_envelhecimento+count_envelhecer+count_senescence+count_senescencia+count_seniors+count_older
 
         print('\nthe total of articles are: ', total_of_articles)
         response=input('saving the GOOGLE profile, please press ENTER ')
@@ -323,7 +377,7 @@ def google_with_url(p, name, googleUrl):
         user_page.append(['Google curriculo:'])
         user_page.append(['####'])
 
-        #SENDING ARTICLES
+        #SENDING ARTICLES        
         for i in range(count_uniser):                                   #uniser
             user_page.append([label_uniser.nth(i).text_content()])
         for i in range(count_unb):                                      #unb
@@ -337,7 +391,13 @@ def google_with_url(p, name, googleUrl):
         for i in range(count_older):                                    #older
             user_page.append([label_older.nth(i).text_content()])
         for i in range(count_envelhecer):                               #envelhecer            
-            user_page.append([label_envelhecer.nth(i).text_content()]) 
+            user_page.append([label_envelhecer.nth(i).text_content()])
+        for i in range(count_seniors):                                   #seniors            
+            user_page.append([label_seniors.nth(i).text_content()]) 
+        for i in range(count_senescencia):                              #senescência            
+            user_page.append([label_senescencia.nth(i).text_content()])
+        for i in range(count_senescence):                               #senescence            
+            user_page.append([label_senescence.nth(i).text_content()]) 
         book.save('planilha.xlsx')
         browser.close()
     else:
