@@ -126,7 +126,6 @@ def google(p, name):
     response=input('Did you find the resume? [y/N] ')
 
     if response=='Y' or response=='y':
-        page.locator('button#gsc_bpf_more').click()
         input('MAKE SURE that all articles are showing. ')
         page.reload()
 
@@ -323,7 +322,6 @@ def google_with_url(p, name, googleUrl):
 
         print('\nLoading GOOGLE resume...')
 
-        page.locator('button#gsc_bpf_more').click()
         input('MAKE SURE that all articles are showing. ')
         page.reload()
 
